@@ -1,0 +1,195 @@
+﻿private void CheckMap()
+{
+    for (int i = 0; i < mapSize; i++)
+        for (int j = 0; j < mapSize; j++)
+        {
+            if (enemyMap[i, j] == -2)
+            {
+                One(enemyMap, enemyButtons, i, j);
+                Two(enemyMap, enemyButtons, i, j);
+                Three(enemyMap, enemyButtons, i, j);
+                Four(enemyMap, enemyButtons, i, j);
+                enemyMap[i, j] = -3;
+            }
+            if (myMap[i, j] == -2)
+            {
+                One(myMap, myButtons, i, j);
+                Two(myMap, myButtons, i, j);
+                Three(myMap, myButtons, i, j);
+                Four(myMap, myButtons, i, j);
+                myMap[i, j] = -3;
+            }
+        }
+}
+
+private void One(int[,] map, Button[,] buttons, int i, int j)
+{
+
+    if (i == 1 && j == 1)//left up corner
+    {
+        if ((map[i + 1, j] == -1 || map[i + 1, j] == 0) && (map[i, j + 1] == -1 || map[i, j + 1] == 0))
+        {
+            buttons[i + 1, j].BackColor = Color.Black;
+            buttons[i, j + 1].BackColor = Color.Black;
+            buttons[i + 1, j + 1].BackColor = Color.Black;
+            map[i + 1, j] = -1;
+            map[i, j + 1] = -1;
+            map[i + 1, j + 1] = -1;
+        }
+    }
+
+    if (i == 10 && j == 10)//right down corner
+    {
+        if ((map[i - 1, j] == 0 || map[i - 1, j] == -1) && (map[i, j - 1] == 0 || map[i, j - 1] == -1))
+        {
+            buttons[i - 1, j].BackColor = Color.Black;
+            buttons[i, j - 1].BackColor = Color.Black;
+            buttons[i - 1, j - 1].BackColor = Color.Black;
+            map[i - 1, j] = -1;
+            map[i, j - 1] = -1;
+            map[i - 1, j - 1] = -1;
+        }
+    }
+
+    if (i == 1 && j == 10)//left down corner
+    {
+        if ((map[i + 1, j] == 0 || map[i + 1, j] == -1) && (map[i, j - 1] == 0 || map[i, j - 1] == -1))
+        {
+            buttons[i + 1, j].BackColor = Color.Black;
+            buttons[i, j - 1].BackColor = Color.Black;
+            buttons[i + 1, j - 1].BackColor = Color.Black;
+            map[i + 1, j] = -1;
+            map[i, j - 1] = -1;
+            map[i + 1, j - 1] = -1;
+        }
+    }
+
+
+    if (i == 10 && j == 1)//right up corner
+    {
+        if ((map[i - 1, j] == 0 || map[i - 1, j] == -1) && (map[i, j + 1] == 0 || map[i, j + 1] == -1))
+        {
+            buttons[i - 1, j].BackColor = Color.Black;
+            buttons[i, j + 1].BackColor = Color.Black;
+            buttons[i - 1, j + 1].BackColor = Color.Black;
+            map[i - 1, j] = -1;
+            map[i, j + 1] = -1;
+            map[i - 1, j + 1] = -1;
+        }
+    }
+
+    if (i == 1 && (j != 10 && j != 1)) //left side
+    {
+        if ((map[i, j - 1] == 0 || map[i, j - 1] == -1) && (map[i, j + 1] == 0 || map[i, j + 1] == -1) && (map[i + 1, j] == 0 || map[i + 1, j] == -1))
+        {
+            buttons[i, j - 1].BackColor = Color.Black;
+            buttons[i, j + 1].BackColor = Color.Black;
+            buttons[i + 1, j].BackColor = Color.Black;
+            buttons[i + 1, j + 1].BackColor = Color.Black;
+            buttons[i + 1, j - 1].BackColor = Color.Black;
+
+            map[i, j - 1] = -1;
+            map[i, j + 1] = -1;
+            map[i + 1, j] = -1;
+            map[i + 1, j + 1] = -1;
+            map[i + 1, j - 1] = -1;
+        }
+    }
+
+    if (j == 1 && (i != 1 && i != 10))// up sdie
+    {
+        if ((map[i + 1, j] == 0 || map[i + 1, j] == -1) && (map[i - 1, j] == 0 || map[i - 1, j] == -1) && (map[i, j + 1] == 0 || map[i, j + 1] == -1))
+        {
+            buttons[i + 1, j].BackColor = Color.Black;
+            buttons[i - 1, j].BackColor = Color.Black;
+            buttons[i, j + 1].BackColor = Color.Black;
+            buttons[i - 1, j + 1].BackColor = Color.Black;
+            buttons[i + 1, j + 1].BackColor = Color.Black;
+
+            map[i + 1, j] = -1;
+            map[i - 1, j] = -1;
+            map[i, j + 1] = -1;
+            map[i - 1, j + 1] = -1;
+            map[i + 1, j + 1] = -1;
+        }
+    }
+
+    if (i == 10 && (j != 1 && j != 10))// right side
+    {
+        if ((map[i, j - 1] == 0 || map[i, j - 1] == -1) && (map[i, j + 1] == 0 || map[i, j + 1] == -1) && (map[i - 1, j] == 0 || map[i - 1, j] == -1))
+        {
+            buttons[i, j - 1].BackColor = Color.Black;
+            buttons[i, j + 1].BackColor = Color.Black;
+            buttons[i - 1, j].BackColor = Color.Black;
+            buttons[i - 1, j + 1].BackColor = Color.Black;
+            buttons[i - 1, j - 1].BackColor = Color.Black;
+
+            map[i, j - 1] = -1;
+            map[i, j + 1] = -1;
+            map[i - 1, j] = -1;
+            map[i - 1, j + 1] = -1;
+            map[i - 1, j - 1] = -1;
+        }
+    }
+
+    if (j == 10 && (i != 1 && i != 10))
+    {
+        if ((map[i + 1, j] == 0 || map[i + 1, j] == -1) && (map[i - 1, j] == 0 || map[i - 1, j] == -1) && (map[i, j - 1] == 0 || map[i, j - 1] == -1))
+        {
+            buttons[i + 1, j].BackColor = Color.Black;
+            buttons[i - 1, j].BackColor = Color.Black;
+            buttons[i, j - 1].BackColor = Color.Black;
+            buttons[i - 1, j - 1].BackColor = Color.Black;
+            buttons[i + 1, j - 1].BackColor = Color.Black;
+
+            map[i + 1, j] = -1;
+            map[i - 1, j] = -1;
+            map[i, j - 1] = -1;
+            map[i - 1, j - 1] = -1;
+            map[i + 1, j - 1] = -1;
+        }
+    }
+
+    if ((i > 1 && i < 10) && (j > 1 && j < 10))
+    {
+        if ((map[i + 1, j] == 0 || map[i + 1, j] == -1) && (map[i - 1, j] == 0 || map[i - 1, j] == -1)
+                                                &&
+            (map[i, j + 1] == 0 || map[i, j + 1] == -1) && (map[i, j - 1] == 0 || map[i, j - 1] == -1))
+        {
+            buttons[i + 1, j].BackColor = Color.Black;
+            buttons[i - 1, j].BackColor = Color.Black;
+            buttons[i, j + 1].BackColor = Color.Black;
+            buttons[i, j - 1].BackColor = Color.Black;
+            buttons[i + 1, j - 1].BackColor = Color.Black;
+            buttons[i + 1, j + 1].BackColor = Color.Black;
+            buttons[i - 1, j + 1].BackColor = Color.Black;
+            buttons[i - 1, j - 1].BackColor = Color.Black;
+
+            map[i + 1, j] = -1;
+            map[i - 1, j] = -1;
+            map[i, j + 1] = -1;
+            map[i, j - 1] = -1;
+            map[i + 1, j - 1] = -1;
+            map[i + 1, j + 1] = -1;
+            map[i - 1, j + 1] = -1;
+            map[i - 1, j - 1] = -1;
+        }
+    }
+
+}
+
+private void Two(int[,] map, Button[,] buttons, int i, int j)
+{
+
+}
+
+private void Three(int[,] map, Button[,] buttons, int i, int j)
+{
+
+}
+
+private void Four(int[,] map, Button[,] buttons, int i, int j)
+{
+
+}
+}
